@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/scripts",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "module": "esnext",
+        "target": "es6",
+        "lib": ["es6", "dom"],
+        "jsx": "react-jsx",
+        // "esModuleInterop": true,
+        "skipLibCheck": true,
+        "types": ["node"]
+    },
+    "include": [
+        "src"
+    ]
+   
+}

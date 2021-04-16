@@ -1,0 +1,14 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker-build-dev": "docker build -t kellydouglass/docker_practice_two_dev -f Dockerfile.dev .",
+    "docker-run-dev": "docker run -it -p 5432:5432 -e POSTGRES_PASSWORD=password kellydouglass/docker_practice_two_dev "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

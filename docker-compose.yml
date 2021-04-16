@@ -1,0 +1,46 @@
+version: '3'
+services:
+
+  nginx:
+    depends_on: 
+    - api
+    - client
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports: 
+      - "3050:80"
+  db:
+    restart: always
+    ports:
+      - "5432:5432"
+    environment: 
+      POSTGRES_PASSWORD: password
+    build:
+      context: ./database
+      dockerfile: Dockerfile.dev
+  
+  client:
+    stdin_open: true
+    restart: always
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    # ports:
+    #   - "4000:80"
+    volumes: 
+      - /app/node_modules
+      - ./client/dist:/usr/share/nginx/html
+
+  api:
+    restart: always
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    # ports:
+    #   - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+
