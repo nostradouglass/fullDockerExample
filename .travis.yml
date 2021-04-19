@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker built -t kellydouglass/react-test -f ./client/Dockerfile.dev ./client
+
+scripts:
+
+after_success:
+  - docker build -t kellydouglass/practice-two-client ./client
+  - docker build -t kellydouglass/practice-two-database ./database
+  - docker build -t kellydouglass/practice-two-nginx ./nginx
+  - docker build -t kellydouglass/practice-two-server ./server
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push kellydouglass/practice-two-client
+  - docker push kellydouglass/practice-two-database
+  - docker push kellydouglass/practice-two-nginx
+  - docker push kellydouglass/practice-two-server
+
+
+
+
