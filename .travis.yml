@@ -9,7 +9,7 @@ services:
 
 # scripts:
 
-after_success:
+scripts:
   - docker build -t kellydouglass/practice-two-client ./client
   - docker build -t kellydouglass/practice-two-database ./database
   - docker build -t kellydouglass/practice-two-nginx ./nginx
