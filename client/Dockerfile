@@ -3,6 +3,7 @@ FROM node:alpine as builder
 WORKDIR '/app'
 
 RUN npm install
+RUN npm i -g webpack
 COPY . . 
 RUN npm run build
 
