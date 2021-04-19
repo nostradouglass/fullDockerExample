@@ -25,10 +25,21 @@ var getUser = function (user_id) {
         throw err;
     });
 };
+var getUserByFirstname = function (firstname) {
+    return pool_1.default
+        .query("SELECT * FROM " + tableName + " WHERE firstname = '" + firstname + "' ORDER BY user_id ASC")
+        .then(function (data) {
+        return data.rows[0];
+    })
+        .catch(function (err) {
+        throw err;
+    });
+};
 var createUser = function (firstname, lastname, is_admin) {
     return pool_1.default
         .query("INSERT INTO " + tableName + " (firstname, lastname, is_admin) VALUES ($1, $2, $3)", [firstname, lastname, is_admin])
         .then(function (data) {
+        console.log(data);
         return data.rowCount;
     })
         .catch(function (err) {
@@ -57,6 +68,7 @@ var removeUser = function (id) {
 module.exports = {
     getUsers: getUsers,
     getUser: getUser,
+    getUserByFirstname: getUserByFirstname,
     createUser: createUser,
     updateUser: updateUser,
     removeUser: removeUser

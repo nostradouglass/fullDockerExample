@@ -26,6 +26,19 @@ const getUser = (user_id: string) => {
     });
 };
 
+const getUserByFirstname = (firstname: string) => {
+  return pool
+    .query(
+      `SELECT * FROM ${tableName} WHERE firstname = '${firstname}' ORDER BY user_id ASC`
+    )
+    .then((data: any) => {
+      return data.rows[0];
+    })
+    .catch((err: any) => {
+      throw err;
+    });
+};
+
 const createUser = (firstname: string, lastname: string, is_admin: boolean) => {
   return pool
     .query(
@@ -33,6 +46,7 @@ const createUser = (firstname: string, lastname: string, is_admin: boolean) => {
       [firstname, lastname, is_admin]
     )
     .then((data: any) => {
+      console.log(data)
       return data.rowCount;
     })
     .catch((err: any) => {
@@ -75,6 +89,7 @@ const removeUser = (id: string) => {
 module.exports = {
   getUsers,
   getUser,
+  getUserByFirstname,
   createUser,
   updateUser,
   removeUser

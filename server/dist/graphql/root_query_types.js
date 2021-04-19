@@ -22,6 +22,14 @@ var RootQuery = new graphql_1.GraphQLObjectType({
                 var user_id = _a.user_id;
                 return userQueries.getUser(user_id);
             }
+        },
+        userByFirst: {
+            type: user_type_1.default,
+            args: { firstname: { type: graphql_1.GraphQLString } },
+            resolve: function (parentValue, _a) {
+                var firstname = _a.firstname;
+                return userQueries.getUserByFirstname(firstname);
+            }
         }
     }); }
 });

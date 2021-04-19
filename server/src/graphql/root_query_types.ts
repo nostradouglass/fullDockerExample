@@ -19,6 +19,13 @@ const RootQuery: GraphQLObjectType = new GraphQLObjectType({
             resolve(parentValue, { user_id }) {
                 return userQueries.getUser(user_id);
             }
+        },
+        userByFirst: {
+            type: UserType,
+            args: { firstname: { type: GraphQLString }},
+            resolve(parentValue, { firstname }) {
+                return userQueries.getUserByFirstname(firstname);
+            }
         }
     })
 })
